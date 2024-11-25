@@ -1,7 +1,21 @@
 {{- $scope := default "homepage" .Scope -}}
 {{- $context := .Context -}}
 {{- with (index .Context.Site.Params.widgets $scope) -}}
-    <aside class="sidebar right-sidebar sticky">
+    <aside class="sidebar right-sidebar sticky" id="right-sidebar">
+
+        {{ range $widget := . }}
+            {{ if eq .type "toc" }}
+            <div class="right-sidelist-toggle" onclick="document.querySelector('#right-sidebar').classList.toggle('fold')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 48 48" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <!-- <rect width="48" height="48" fill="white" fill-opacity="0.01"/> -->
+                    <path d="M8 11H40"  stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8 24H42"  stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8 37H40"  stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M36.3433 29.6569L42.0001 24L36.3433 18.3431" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            {{ end }}
+        {{ end }}
         {{ range $widget := . }}
             {{ if templates.Exists (printf "partials/widget/%s.html" .type) }}
                 <!-- Ensure that the `params` is not nil -->
