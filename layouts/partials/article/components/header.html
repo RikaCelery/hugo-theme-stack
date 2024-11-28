@@ -31,5 +31,7 @@
         </div>
     {{ end }}
 
-    {{ partialCached "article/components/details" . .RelPermalink }}
+    <div class="container compact">
+        {{ partialCached "article/components/details" . .RelPermalink }}
+    </div>
 </header>

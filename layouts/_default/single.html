@@ -16,7 +16,7 @@
     {{- end -}}
 
     {{- $TOCManuallyDisabled := eq .Params.toc false -}}
-    {{- $TOCEnabled := and (not $TOCManuallyDisabled) $TOCWidgetEnabled -}}
+    {{- $TOCEnabled := and (not $TOCManuallyDisabled) (not .Params.fullpage) $TOCWidgetEnabled -}}
     {{- $hasTOC := ge (len .TableOfContents) 100 -}}
     {{- .Scratch.Set "TOCEnabled" (and $TOCEnabled $hasTOC) -}}
     
@@ -25,7 +25,9 @@
 
 {{ define "main" }}
     {{ partial "article/article.html" . }}
-
+    {{ if .Params.fullpage }}
+    <div class="p-4">
+    {{ end }}
     {{ if .Params.links }}
         {{ partial "article/components/links" . }}
     {{ end }}
@@ -39,6 +41,9 @@
     {{ partialCached "footer/footer" . }}
 
     {{ partialCached "article/components/photoswipe" . }}
+    {{ if .Params.fullpage }}
+    </div>
+    {{ end }}
 {{ end }}
 
 {{ define "right-sidebar" }}

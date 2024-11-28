@@ -14,12 +14,14 @@
                 {{- $hasWidget = true -}}
             {{- end -}}
         {{- end -}}
-        <div class="container main-container flex on-phone--column {{ if $hasWidget }}extended{{ else }}compact{{ end }}">
+        <div class="container{{ if not .Params.fullpage }} main-container{{ end }} flex on-phone--column {{ if $hasWidget }}extended{{ else }}compact{{ end }}">
+            {{- if not .Params.fullpage -}}
             {{- block "left-sidebar" . -}}
                 {{ partial "sidebar/left.html" . }}
             {{- end -}}
+            {{- end -}}
             {{- block "right-sidebar" . -}}{{ end }}
-            <main class="main full-width">
+            <main class="main full-width{{ if .Params.fullpage }} fullpage{{ end }}">
                 {{- block "main" . }}{{- end }}
             </main>
         </div>

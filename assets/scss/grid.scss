@@ -86,6 +86,9 @@ main.main {
     @include respond(md) {
         padding-top: var(--main-top-padding);
     }
+    &.fullpage{
+        padding-top: 0;
+    }
 }
 
 .main-container {
