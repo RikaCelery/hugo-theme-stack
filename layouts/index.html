@@ -6,7 +6,11 @@
 
     <section class="article-list">
         {{ range $index, $element := $pag.Pages }}
+            {{if and .Params.fullpage .Params.image}}
+            {{ partial "article-list/fullpage" . }}
+            {{else}}
             {{ partial "article-list/default" . }}
+            {{end}}
         {{ end }}
     </section>
 

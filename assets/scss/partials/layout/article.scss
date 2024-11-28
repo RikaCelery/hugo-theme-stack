@@ -22,9 +22,14 @@
                 img {
                     height: auto;
                     width: 100%;
-                    max-height: 50vh;
+                    max-height: 80vh;
                     object-fit: cover;
                 }
+                
+            &.fullpage img{
+                transition: all .3s;
+                height: auto;
+            }
             }
 
             .article-details {

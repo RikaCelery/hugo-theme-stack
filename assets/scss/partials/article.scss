@@ -17,7 +17,7 @@
         &:hover {
             box-shadow: var(--shadow-l2);
         }
-
+        
         .article-image {
             img {
                 width: 100%;
@@ -32,6 +32,12 @@
                     height: 250px;
                 }
             }
+            &.fullpage img{
+                transition: all .3s;
+                display: block;
+                height: auto;
+                filter: brightness(.6);
+            }
         }
 
         @for $i from 1 through length($defaultTagBackgrounds) {
@@ -40,6 +46,25 @@
                     background: nth($defaultTagBackgrounds, $i);
                     color: nth($defaultTagColors, $i);
                 }
+            }
+        }
+
+        .article-cover{
+            position: relative;
+            .article-title-wrapper h2,
+            .article-title-wrapper h5{
+                color: white;
+            }
+            .article-category{
+                a{
+                    background: none;
+                }
+            }
+            .article-info{
+                padding-top: 3em;
+            }
+            &:hover .article-image.fullpage img{
+                filter: brightness(.3);
             }
         }
     }
